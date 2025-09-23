@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frame - Thảo Linh</title>
+    <style>
+        body {
+            margin: 0;
+            background-size: cover;
+            font-family: sans-serif;
+        }
+        .logo {
+            text-align: center;
+            background: white;
+            padding: 10px;
+        }
+        .container {
+            display: flex;
+            height: 90vh; /* chiều cao khung dưới */
+        }
+        iframe {
+            border: none;
+        }
+        .left {
+            width: 30%;
+        }
+        .right {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <div class="logo">
+        <img src="images/LOGO.JPG" height="100">
+    </div>
+
+    <!-- Khung 2 cột -->
+    <div class="container">
+        <iframe class="left" src="Link.html" name="frm_name_list"></iframe>
+        <iframe class="right" src="TCE.html" name="my_container"></iframe>
+    </div>
+</body>
+</html>
