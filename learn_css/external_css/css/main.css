@@ -1,0 +1,11 @@
+body
+{
+    background-color: blue ;
+    background-image: url("../images/TCE.jpg");
+    background-size: cover ;
+    background-repeat: no-repeat ;
+    background-position: center ;
+}
+audio {
+    display:none;
+}
