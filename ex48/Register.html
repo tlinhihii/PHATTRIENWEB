@@ -1,0 +1,122 @@
+<html>
+<head>
+    <title>EX48 - THẢO LINH</title>
+    <link rel="stylesheet" href="mainstyle.css">
+</head>
+<body>
+    <form name="frm_register" id="frm_register" action="#" method="get">
+        <table class="form">
+            <tr>
+                <td colspan="4" class="logo">
+                    <img src="../Ex48/images/Jackson.gif" alt="Jackson Electronics"/>
+                </td>
+            </tr>
+
+            <tr><th colspan="4" class="title">Registration Form</th></tr>
+            <tr><td colspan="4" class="subtitle">Register your Jackson Electronics product here</td></tr>
+
+            <tr>
+                <td class="lbl">First Name:</td>
+                <td><input type="text" name="firstName" id="firstName"></td>
+                <td class="lbl">Last Name:</td>
+                <td><input type="text" name="lastName" id="lastName"></td>
+            </tr>
+
+            <tr>
+                <td class="lbl">Address #1:</td>
+                <td colspan="3"><input type="text" name="addr1" id="addr1"></td>
+            </tr>
+            <tr>
+                <td class="lbl">Address #2:</td>
+                <td colspan="3"><input type="text" name="addr2" id="addr2"></td>
+            </tr>
+
+            <tr>
+                <td class="lbl">City:</td>
+                <td><input type="text" name="city" id="city"></td>
+                <td class="lbl mini">State: / Zip:</td>
+                <td class="inline">
+                    <input type="text" name="state" id="state" class="mini" placeholder="State">
+                    <input type="text" name="zip" id="zip" class="mini" placeholder="Zip">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="lbl">Country:</td>
+                <td colspan="3">
+                    <select name="country" id="country">
+                        <option>United States</option>
+                        <option>Canada</option>
+                        <option>United Kingdom</option>
+                        <option>Australia</option>
+                        <option>Viet Nam</option>
+                        <option>Other</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr><td colspan="4"><hr></td></tr>
+
+            <tr>
+                <td class="lbl">Product:</td>
+                <td>
+                    <select name="product" id="product">
+                        <option>ScanMaster</option>
+                        <option>PhotoPro</option>
+                        <option>SoundWave</option>
+                        <option>VisionPlus</option>
+                    </select>
+                </td>
+            <tr>
+                <td class="lbl">Date Purchased:</td>
+                <td><input type="date" name="datePurchased" id="datePurchased"></td>
+            </tr>
+            </tr>
+
+            <tr>
+                <td class="lbl">Serial #:</td>
+                <td><input type="text" name="serial" id="serial"></td>
+                <td></td><td></td>
+            </tr>
+
+            <tr>
+                <td class="lbl top">Used for:</td>
+                <td colspan="3" class="group">
+                    <label><input type="radio" name="usedfor"> Home</label>
+                    <label><input type="radio" name="usedfor"> Business</label>
+                    <label><input type="radio" name="usedfor"> Government</label>
+                    <label><input type="radio" name="usedfor"> Educational Institution</label>
+                    <label><input type="radio" name="usedfor"> Other</label>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="lbl top">System (check all that apply):</td>
+                <td colspan="3" class="group">
+                    <label><input type="checkbox" name="system"> Windows</label>
+                    <label><input type="checkbox" name="system"> Macintosh</label>
+                    <label><input type="checkbox" name="system"> UNIX</label>
+                    <label><input type="checkbox" name="system"> Other</label>
+                </td>
+            </tr>
+
+            <tr><td colspan="4"><hr></td></tr>
+
+            <tr>
+                <td class="lbl top">Comments?</td>
+                <td colspan="3">
+                    <textarea name="comments" id="comments" rows="6" placeholder=""></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td colspan="3" class="actions">
+                    <input type="submit" value="Click to register" class="btn">
+                    <input type="reset"  value="Click to cancel"   class="btn muted">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
