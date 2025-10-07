@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title> THẢO LINH </title>
+        <script>
+            function change_color(v)
+            {
+                document.getElementById("div_color").style="width: 100%; height:50px; background-color:"+v
+            }
+            function change_image(value)
+            {
+                avatar=document.getElementById("avatar")
+                avatar.setAttribute("src","images/"+value)
+            }
+        </script>
+    </head>
+    <body>
+        <form name="frm_color">
+            <select name="combo_color" onchange="change_color(this.value)">
+                <option value="blue">Xanh lè</option>
+                <option value="red">Đỏ chót</option>
+                <option value="yellow">Vàng khè</option>
+            </select>
+            <div id="div_color" style="width: 100%; height:50px; background-color: pink;">
+
+            </div>
+        </form>
+        <form name="frm_image">
+            <select name="combo_image">
+                <option value="LVB1.jpg">Obame</option>
+                <option value="LVB2.jpg">Putin</option>
+                <option value="LVB3.jpg">Kim JongUn</option>
+                <option value="LVB4.jpg">Hồ Cẩm Đào</option>
+            </select>
+            <br/>
+            <img id="avatar" src="images/next.png"/>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title> THẢO LINH </title>
+        <script>
+            function show_image(value)
+            {
+                //step 1: get image object by taylor_avatar id
+                img=document.getElemntById("taylor_avatar")
+                //step 2: set style attribute for show image
+                img.setAttribute("style", "display:+value")
+            }
+        </script>
+    </head>
+    <body>
+        <form name="myform">
+            <input type="radio" name="myimage" id="img1" onchange="show_image('block')"/>
+            <lable for="img1">Show Image</lable>
+            <br/>
+            <input type="radio" name="myimage" id="img2" onchange="show_image('none')"/>
+            <lable for="img2">Hide Image</lable>
+            <br/>
+            <img src="../ex14/images/Taylor.jpg" id="taylor_avatar" name="taylor_avatar">
+        </form>
+    </body>
+</html>
