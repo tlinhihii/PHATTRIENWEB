@@ -1,0 +1,161 @@
+<html>
+  <head>
+    <title>EX50 - THẢO LINH</title>
+    <style>
+        body{
+            background-color:rgb(205, 244, 244);
+            text-align: center;
+        }
+    </style>
+    <script>
+        function submit_receipt()
+        {
+            alert("Do you sure to submit your receipt?")
+        }
+    </script>
+  </head>
+  <body>
+    <p align="center">
+        <img src="DeLong.jpg" /> 
+    </p>
+    <h2> Travel Expense Report </h2>
+    <hr/>
+    <form name="frm_travel">
+        <table>
+            <tr>
+                <td> 1) First name:</td>
+                <td>
+                    <input type="text" name="firstname" id="firstname"/>
+                </td>
+                <td> Last name:</td>
+                <td> 
+                    <input type="text" name="lastname" id="lastname"/>
+                </td>
+            </tr>
+            <tr>
+                <td> 2)Social Security Number:</td>
+                <td>
+                    <input type="text" name="ssn" id="ssn"/>
+                </td>
+            </tr>
+            <tr>
+                <td> 3) Department:</td>
+                <td>
+                    <select>
+                        <option value="1"> Accounting </option>
+                        <option value="2"> Human Resources </option>
+                        <option value="3"> Opearations </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td> 4) Describe the purpose of your trip:</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <input type="text" name="purpose" id="purpose" <input type="text" style="width: 500px; height:100px;"/>
+                </td>
+            </tr>
+            <tr>
+                <td> 5) Itemize your travel expenses </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <table border="1">
+                        <tr>
+                            <th> Date </th>
+                            <th style="width:200px;"> Description</th>
+                            <th> Category </th>
+                            <th> Amount</th>
+                        </tr>
+                        <tr>
+                            <td> 
+                                <input type="text" value="dd/mm/yy" name="date" id="date"style="width:100px;"/>
+                            </td>
+                            <td align="center">
+                                <input type="text" name="description" id="description" style="width:150px;"/>
+                            </td>
+                            <td>
+                                <select>
+                                    <option value="cate1"> Meal </option>
+                                    <option value="cate2"> Accommodation </option>
+                                </select>
+                            </td>
+                            <td align="center">
+                                <input type="text" name="amount" id="amount" style="width:50px;"/>   
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> 
+                                <input type="text" value="dd/mm/yy" name="date" id="date"style="width:100px;"/>
+                            </td>
+                            <td align="center">
+                                <input type="text" name="description" id="description" style="width:150px;"/>
+                            </td>
+                            <td>
+                                <select>
+                                    <option value="cate1"> Meal </option>
+                                    <option value="cate2"> Accommodation </option>
+                                </select>
+                            </td>
+                            <td align="center">
+                                <input type="text" name="amount" id="amount" style="width:50px;"/>   
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> 
+                                <input type="text" value="dd/mm/yy" name="date" id="date"style="width:100px;"/>
+                            </td>
+                            <td align="center">
+                                <input type="text" name="description" id="description" style="width:150px;"/>
+                            </td>
+                            <td>
+                                <select>
+                                    <option value="cate1"> Meal </option>
+                                    <option value="cate2"> Accommodation </option>
+                                </select>
+                            </td>
+                            <td align="center">
+                                <input type="text" name="amount" id="amount" style="width:50px;"/>   
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> 
+                                <input type="text" value="dd/mm/yy" name="date" id="date"style="width:100px;"/>
+                            </td>
+                            <td align="center">
+                                <input type="text" name="description" id="description" style="width:150px;"/>
+                            </td>
+                            <td>
+                                <select>
+                                    <option value="cate1"> Meal </option>
+                                    <option value="cate2"> Accommodation </option>
+                                </select>
+                            </td>
+                            <td align="center">
+                                <input type="text" name="amount" id="amount" style="width:50px;"/>   
+                            </td>
+                        </tr>
+                    </table>
+                    <tr>
+                        <td> 6) Have you submitted your receipts? </td>
+                        <td>
+                            <input type="radio" name="submitreceipt" id="submitreceipt1"/> Yes
+                            <input type="radio" name="submitreceipt" id="submitreceipt2"/> No
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <button type="button" onclick="submit_receipt()"> Submit travel expenses </button>
+                            <button type="reset"> Reset </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"> Question? Contact Debbie Larson in Accounting (ext. 2150)</td>
+                    </tr>
+                </td>
+            </tr>
+        </table>
+    </form>
+  </body>
+</html>
