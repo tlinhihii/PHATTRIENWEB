@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title> EX51 - THẢO LINH </title>
+    <style>
+        body{
+            background-color:rgba(19, 137, 119, 0.856);
+        }
+        p {
+            color:aliceblue;
+            font-size:14;
+        }
+    </style>
+  </head>
+  <body>
+    <p align="center">
+        <img src="Logo.gif"/>
+    </p>
+    <h1 align="center" style="color:aliceblue">Newborn Registration</h1>
+    <form name="frm_registration">
+        <p> Date:
+            <input type="text" name="date" id="date" value="dd/mm/yy"/>
+        </p>
+        <p> 1) Infant's first name:
+            <input type="text" name="firstname" id="firstname"/>
+            Last:
+            <input type="text" name="lastname" id="lastname"/>
+        </p>
+        <p> 2) Medical Record #:
+            <input type="text" name="medicalrecord" id="medicalrecord"/>
+        </p>
+        <p> Date of birth:
+            <input type="text" name="DOB" id="DOB" value="dd/mm/yy"/>
+        </p>
+        <p> Birth weight:
+            <input type="text" name="weight" id="weight"/> 
+        </p>
+        <p> 5) APGAR score:
+            <input type="text" name="apgar" id="apgar"/>
+        </p>
+        <p>
+            6) Mother's first name:
+            <input type="text" name="momfname" id="momfname"/>
+            Last:
+            <input type="text" name="momlname" id="momlname"/>
+        </p>
+        <p>
+            7) Father's first name:
+            <input type="text" name="dadfname" id="dadfname"/>
+            Last:
+            <input type="text" name="dadlname" id="dadlname"/>
+        </p>
+        <table>
+            <tr>
+                <td> <p> 8) Physician (check all that apply) </p> </td>
+                <td>
+                    <select name="physican" multiple>
+                        <option> Dr. Warren Albert </option>
+                        <option> Dr. Maria Alvarez </option>
+                        <option> Dr. Karen Brinkman </option>
+                        <option> Dr. Micheal Kerry </option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <p align="center">
+            <button type="button">Register</button>
+            <button type="reset">Cancel</button>
+        </p>
+    </form>
+  </body>
+</html>
