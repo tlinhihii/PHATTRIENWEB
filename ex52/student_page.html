@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>EX52 - NGUYỄN MAI THẢO LINH</title>
+    <style>
+      body {
+        font-family: "Poppins", Arial, sans-serif;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .message-box {
+        background: linear-gradient(135deg, #ffffff, #8798d9);
+        border-radius: 15px;
+      }
+      h1 {
+        color: rgb(29, 40, 166);
+        text-align: center;
+        margin-bottom: 25px;
+        letter-spacing: 1px;
+      }
+      td {
+        padding: 12px 8px;
+        vertical-align: top;
+      }
+      .label {
+        font-weight: bold;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <table class="message-box">
+        <tr>
+            <td>
+    <h1>Message Details</h1>
+    <table>
+      <tr>
+        <td class="label">Full Name:</td>
+        <td id="name"></td>
+      </tr>
+      <tr>
+        <td class="label">Email:</td>
+        <td id="email"></td>
+      </tr>
+      <tr>
+        <td class="label">Department:</td>
+        <td id="department"></td>
+      </tr>
+      <tr>
+        <td class="label">Title:</td>
+        <td id="title"></td>
+      </tr>
+      <tr>
+        <td class="label">Content:</td>
+        <td id="content"></td>
+      </tr>
+      </td>
+        </tr>
+    </table>
+    </table>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      document.getElementById("name").textContent = params.get("fullname");
+      document.getElementById("email").textContent = params.get("email");
+      document.getElementById("department").textContent = params.get("department");
+      document.getElementById("title").textContent = params.get("title");
+      document.getElementById("content").textContent = params.get("content");
+    </script>
+
+  </body>
+</html>
