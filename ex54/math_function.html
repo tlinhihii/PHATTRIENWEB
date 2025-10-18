@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <title>EX54 - THẢO LINH</title>
+    <style>
+       td { text-align: center;
+            width: 100px;} 
+    </style>
+    <script type="text/javascript">
+        function get_values()
+        {
+            a = parseFloat(document.getElementById("hesoa").value);
+            b = parseFloat(document.getElementById("hesob").value);
+            c = parseFloat(document.getElementById("hesoc").value);
+            return {a,b,c};
+        }
+        function show_result(value)
+        {
+            document.getElementById("result").value=value;
+        }
+        function calc_max()
+        {
+            var values = get_values();
+            var a = values.a;
+            var b = values.b;
+            var c = values.c;
+            show_result(Math.max(a, b, c));
+        }
+        function calc_min()
+        {
+            var values = get_values();
+            var a = values.a;
+            var b = values.b;
+            var c = values.c;
+            show_result(Math.min(a, b, c));
+        }
+        function calc_sin_a()
+        {
+            var values = get_values()
+            var a = values.a
+            show_result(Math.sin(a * Math.PI / 180));
+        }
+        function calc_cos_a()
+        {
+            var values = get_values();
+            var a = values.a;
+            show_result(Math.cos(a * Math.PI / 180));
+        }
+        function calc_a_b()
+        {
+            var values = get_values();
+            var a = values.a;
+            var b = values.b;
+            show_result(Math.pow(a, b));
+        }
+    </script>
+  </head>
+  <body>
+    <form name="my_form">
+        <table border="1">
+            <tr>
+                <td> a:</td>
+                <td>
+                    <input type="number" name="hesoa" id="hesoa"/>
+                </td>
+            </tr>
+            <tr>
+                <td> b:</td>
+                <td>
+                    <input type="number" name="hesob" id="hesob"/>
+                </td>
+            </tr>
+            <tr>
+                <td> c:</td>
+                <td>
+                    <input type="number" name="hesoc" id="hesoc"/>
+                </td>
+            </tr>
+            <tr>
+                <td> Result: </td>
+                <td>
+                    <input type="text" name="result" id="result"/>
+                </td>
+            </tr>
+        </table>
+        <button type="button" onclick="calc_max()"> MAX </button>
+        <button type="button" onclick="calc_min()"> MIN </button>
+        <button type="button" onclick="calc_sin_a()"> sin(a) </button>
+        <button type="button" onclick="calc_cos_a()"> cos(a) </button>
+        <button type="button" onclick="calc_a_b()"> a^b </button>
+    </form>
+  </body>
+</html>

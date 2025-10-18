@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title>EX55 - THẢO LINH</title>
+    <style>
+      td {
+        text-align: center;
+        width: 100px;
+      }
+    </style>
+    <script type="text/javascript">
+      function find_solution() {
+        var a = parseFloat(document.getElementById("hesoa").value);
+        var b = parseFloat(document.getElementById("hesob").value);
+        var c = parseFloat(document.getElementById("hesoc").value);
+        if (a == 0) {
+          if (b == 0) {
+            document.getElementById("result").value = c == 0 ? "Vô số nghiệm" : "Vô nghiệm";
+          } else {
+            var x = -c/b;
+            document.getElementById("result").value = "x= " + x;
+          }
+          return;
+        }
+        var delta = b*b-4*a*c;
+
+        if (delta < 0) {
+          document.getElementById("result").value = "Vô nghiệm thực";
+        } else if (delta == 0) {
+          var x=-b/(2*a);
+          document.getElementById("result").value = "x1= x2 = " + x;
+        } else {
+          var x1 = (-b + Math.sqrt(delta))/(2*a);
+          var x2 = (-b - Math.sqrt(delta))/(2*a);
+          document.getElementById("result").value = "x1= " + x1 + ", x2= " + x2;
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <form name="my_form">
+      <table border="1">
+        <tr>
+          <td colspan="2" style="background-color: rgb(178, 237, 198)">
+            The quadratic equation
+          </td>
+        </tr>
+        <tr>
+          <td>a:</td>
+          <td style="width: 220px">
+            <input type="number" name="hesoa" id="hesoa" />
+          </td>
+        </tr>
+        <tr>
+          <td>b:</td>
+          <td style="width: 220px">
+            <input type="number" name="hesob" id="hesob" />
+          </td>
+        </tr>
+        <tr>
+          <td>c:</td>
+          <td style="width: 220px">
+            <input type="number" name="hesoc" id="hesoc" />
+          </td>
+        </tr>
+        <tr>
+          <td>Result:</td>
+          <td style="width: 220px">
+            <input type="text" name="result" id="result" />
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <button type="button" onclick="find_solution()">Find solution</button>
+            <button type="reset">C

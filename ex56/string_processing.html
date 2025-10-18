@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ex_56 Bích Ngọc</title>
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        margin-top: 10px;
+      }
+      .column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid black;
+        border-right: none;
+      }
+      fieldset {
+        width: 300px;
+        height: 150px;
+        border: 1px solid black;
+      }
+      legend {
+        font-size: 20pt;
+        font-weight: bold;
+      }
+      button {
+        width: 330px;
+        height: 25px;
+        border: 1px solid black;
+        background-color: #f0f0f0;
+        cursor: pointer;
+      }
+      .column + .column {
+        border-left: none;
+      }
+      .merge-button {
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+      }
+      .merge-button button {
+        width: 662px;
+        height: 30px;
+        border: 1px solid black;
+        background-color: #f0f0f0;
+        cursor: pointer;
+      }
+      textarea {
+        resize: none;
+      }
+    </style>
+  </head>
+  <body>
+    <form name="my_form">
+      <h1>Using String Processing Functions</h1>
+      <div class="container">
+        <div class="column">
+          <fieldset>
+            <legend>Input Data:</legend>
+            <textarea id="input_data" style="width:290px; height:120px;"></textarea>
+          </fieldset>
+          <button type="button" onclick="enter_data()">Enter Data</button>
+          <button type="button" onclick="uppercase()">Uppercase display</button>
+          <button type="button" onclick="lowercase()">lowercase display</button>
+          <button type="button" onclick="count_lowercase()">Count the number of lowercase characters</button>
+        </div>
+        <div class="column">
+          <fieldset>
+            <legend>Result:</legend>
+            <textarea id="output_data" style="width:290px; height:120px;"></textarea>
+          </fieldset>
+          <button type="button" onclick="count_upper()">Count the number of uppercase characters</button>
+          <button type="button" onclick="oneword_perline()">Output one word per line</button>
+          <button type="button" onclick="word_count()">Word count</button>
+          <button type="button" onclick="print_vowels_consonants()">print vowels, consonants</button>
+        </div>
+      </div>
+      <div class="merge-button">
+        <button type="button" onclick="string_process()">W3C's String Processing Website</button>
+      </div>
+    </form>
+    <script>
+      function getInput() 
+      {
+        return document.getElementById("input_data").value;
+      }
+      function setOutput(text) 
+      {
+        document.getElementById("output_data").value = text;
+      }
+
+      function enter_data() 
+      {
+        const data = getInput();
+        setOutput("Your entered: " + data);
+      }
+
+      function uppercase() 
+      {
+        setOutput(getInput().toUpperCase());
+      }
+
+      function lowercase() 
+      {
+        setOutput(getInput().toLowerCase());
+      }
+
+      function count_lowercase() 
+      {
+        const text = getInput();
+        const count = (text.match(/[a-z]/g) || []).length;
+        setOutput("Number of lowercase letters: " + count);
+      }
+      function count_upper() 
+      {
+        const text = getInput();
+        const count = (text.match(/[A-Z]/g) || []).length;
+        setOutput("Number of uppercase letters: " + count);
+      }
+      function oneword_perline() 
+      {
+        const words = getInput().trim().split(/\s+/).filter(Boolean);
+        setOutput(words.join("\n"));
+      }
+      function word_count() 
+      {
+        const words = getInput().trim().split(/\s+/).filter(Boolean);
+        setOutput("Word count: " + words.length);
+      }
+      function print_vowels_consonants() 
+      {
+        const text = getInput().toLowerCase();
+        const vowels = text.match(/[aeiou]/g) || [];
+        const consonants = text.match(/[bcdfghjklmnpqrstvwxyz]/g) || [];
+        setOutput("Vowels: " + (vowels.join(" ") || "(none)") + "\nConsonants: " + (consonants.join(" ") || "(none)"));
+      }
+      function string_process() 
+      {
+        window.open("https://www.w3.org/TR/2005/REC-xml11-20050408/#sec-Strings", "_blank");
+      }
+    </script>
+  </body>
+</html>
