@@ -1,0 +1,398 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự Báo Thời Tiết - DARK MODE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1a1a2e; 
+            --bg-card: #2c3546; 
+            --primary-light: #00bcd4; 
+            --accent-glow: #e91e63; 
+            --text-light: #f0f0f0;
+            --text-muted: #a0a0a0;
+            --border-color: #404b69;
+            --shadow-tech: 0 0 10px rgba(0, 188, 212, 0.5); 
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            margin: 0;
+            padding: 40px 20px;
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: var(--bg-card);
+            border-radius: 15px;
+            padding: 30px 40px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), var(--shadow-tech);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            color: var(--primary-light);
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px var(--primary-light);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        
+        .select-wrapper {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1.1em;
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(0, 188, 212, 0.3);
+        }
+
+        .select-wrapper::after {
+            content: '▼';
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--primary-light);
+            font-size: 0.8em;
+        }
+
+        /* --- Hiển Thị Dữ Liệu --- */
+        .weather-display-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+
+        .weather-current {
+            background-color: var(--bg-dark);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .current-location {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8em;
+            color: var(--accent-glow);
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 0 4px var(--accent-glow);
+        }
+
+        .weather-icon-large {
+            width: 150px;
+            height: 150px;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+            margin-bottom: 10px;
+        }
+
+        .current-temp {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5em;
+            font-weight: 700;
+            color: var(--primary-light);
+            line-height: 1;
+        }
+
+        .current-status {
+            font-size: 1.1em;
+            color: var(--text-muted);
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* --- Chi Tiết Dữ Liệu --- */
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding: 10px 0;
+        }
+
+        .detail-item {
+            background-color: var(--bg-dark);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-light);
+            font-size: 0.9em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+
+        .detail-item:hover {
+            background-color: #374762;
+        }
+
+        .detail-item strong {
+            color: var(--primary-light);
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+            text-transform: uppercase;
+        }
+
+        .detail-item span {
+            color: var(--text-light);
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        /* --- Dự Báo 7 Ngày --- */
+        h3 {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            color: var(--accent-glow);
+            font-size: 1.5em;
+            margin-top: 40px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 3px var(--accent-glow);
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .forecast {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 10px 0 15px;
+            scrollbar-color: var(--primary-light) var(--bg-dark);
+            scrollbar-width: thin;
+        }
+
+        .forecast-day {
+            min-width: 140px;
+            flex-shrink: 0;
+            background-color: var(--bg-dark);
+            border-radius: 10px;
+            padding: 15px 10px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+        
+        .forecast-day:hover {
+            background-color: #374762;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 10px rgba(0, 188, 212, 0.4);
+        }
+
+        .forecast-day p {
+            margin: 5px 0;
+            color: var(--text-muted);
+            font-size: 0.9em;
+        }
+
+        .forecast-day .day-label {
+            font-weight: 700;
+            color: var(--primary-light);
+            font-size: 1em;
+            margin-bottom: 10px;
+            text-shadow: none;
+        }
+
+        .forecast-icon-small {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 5px;
+        }
+
+        .temp-range {
+            font-weight: 700;
+            color: var(--text-light);
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .weather-display-section {
+                grid-template-columns: 1fr;
+            }
+            .weather-current {
+                order: -1; /* Đưa phần hiện tại lên trên */
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            .weather-details {
+                grid-template-columns: 1fr 1fr;
+            }
+            .current-temp {
+                font-size: 4em;
+            }
+        }
+
+    </style>
+    <script type="text/javascript">
+        // Dữ liệu tỉnh thành vẫn giữ nguyên
+        let data = [
+            {"value": "2347719", "name": "An Giang"}, {"value": "20070078", "name": "Bình Dương"}, 
+            {"value": "20070086", "name": "Bình Phước"}, {"value": "2347731", "name": "Bình Thuận"}, 
+            {"value": "2347730", "name": "Bình Định"}, {"value": "20070081", "name": "Bạc Liêu"}, 
+            {"value": "20070087", "name": "Bắc Giang"}, {"value": "20070084", "name": "Bắc Kạn"}, 
+            {"value": "20070088", "name": "Bắc Ninh"}, {"value": "2347703", "name": "Bến Tre"}, 
+            {"value": "2347704", "name": "Cao Bằng"}, {"value": "20070082", "name": "Cà Mau"}, 
+            {"value": "2347732", "name": "Cần Thơ"}, {"value": "28301718", "name": "Điện Biên"}, 
+            {"value": "20070085", "name": "Đà Nẵng"}, {"value": "1252375", "name": "Đà Lạt"}, 
+            {"value": "2347720", "name": "Đắk Lắk"}, {"value": "28301719", "name": "Đắk Nông"}, 
+            {"value": "2347721", "name": "Đồng Nai"}, {"value": "2347722", "name": "Đồng Tháp"}, 
+            {"value": "2347733", "name": "Gia Lai"}, {"value": "2347727", "name": "Hà Nội"}, 
+            {"value": "2347728", "name": "TP. Hồ Chí Minh"}, {"value": "2347734", "name": "Hà Giang"}, 
+            {"value": "2347741", "name": "Hà Nam"}, {"value": "2347736", "name": "Hà Tĩnh"}, 
+            {"value": "2347737", "name": "Hòa Bình"}, {"value": "20070079", "name": "Hưng Yên"}, 
+            {"value": "20070080", "name": "Hải Dương"}, {"value": "2347707", "name": "Hải Phòng"}, 
+            {"value": "28301720", "name": "Hậu Giang"}, {"value": "2347738", "name": "Khánh Hòa"}, 
+            {"value": "2347723", "name": "Kiên Giang"}, {"value": "20070076", "name": "Kon Tum"}, 
+            {"value": "2347708", "name": "Lai Châu"}, {"value": "2347710", "name": "Long An"}, 
+            {"value": "2347740", "name": "Lào Cai"}, {"value": "2347709", "name": "Lâm Đồng"}, 
+            {"value": "2347718", "name": "Lạng Sơn"}, {"value": "20070089", "name": "Nam Định"}, 
+            {"value": "2347742", "name": "Nghệ An"}, {"value": "2347743", "name": "Ninh Bình"}, 
+            {"value": "2347744", "name": "Ninh Thuận"}, {"value": "20070091", "name": "Phú Thọ"}, 
+            {"value": "2347745", "name": "Phú Yên"}, {"value": "2347746", "name": "Quảng Bình"}, 
+            {"value": "2347711", "name": "Quảng Nam"}, {"value": "20070077", "name": "Quảng Ngãi"}, 
+            {"value": "2347712", "name": "Quảng Ninh"}, {"value": "2347747", "name": "Quảng Trị"}, 
+            {"value": "2347748", "name": "Sóc Trăng"}, {"value": "2347713", "name": "Sơn La"}, 
+            {"value": "2347715", "name": "Thanh Hóa"}, {"value": "2347716", "name": "Thái Bình"}, 
+            {"value": "20070083", "name": "Thái Nguyên"}, {"value": "2347749", "name": "Thừa Thiên Huế"}, 
+            {"value": "2347717", "name": "Tiền Giang"}, {"value": "2347750", "name": "Trà Vinh"}, 
+            {"value": "2347751", "name": "Tuyên Quang"}, {"value": "2347714", "name": "Tây Ninh"}, 
+            {"value": "2347752", "name": "Vĩnh Long"}, {"value": "20070090", "name": "Vĩnh Phúc"}, 
+            {"value": "2347729", "name": "Vũng Tàu"}, {"value": "2347753", "name": "Yên Bái"}
+        ];
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>DỰ BÁO THỜI TIẾT VIỆT NAM - HỆ THỐNG DỮ LIỆU</h1>
+        <div class="select-wrapper">
+            <select id="province-select">
+                <option value="">-- CHỌN TỈNH THÀNH (LOADING INTERFACE) --</option>
+            </select>
+        </div>
+        
+        <div id="weather-display" style="display: none;">
+            <div class="weather-display-section">
+                
+                <div class="weather-current">
+                    <h2 id="location" class="current-location"></h2>
+                    <img id="current-icon" class="weather-icon-large" src="" alt="Weather Icon">
+                    <p id="temperature" class="current-temp"></p>
+                    <p id="status" class="current-status"></p>
+                </div>
+
+                <div class="weather-details">
+                    <div class="detail-item"><strong>Cao nhất</strong> <span id="high"></span>°C</div>
+                    <div class="detail-item"><strong>Thấp nhất</strong> <span id="low"></span>°C</div>
+                    <div class="detail-item"><strong>Cảm giác như</strong> <span id="feels-like"></span>°C</div>
+                    <div class="detail-item"><strong>Độ ẩm</strong> <span id="humidity"></span></div>
+                    <div class="detail-item"><strong>Tầm nhìn</strong> <span id="visibility"></span></div>
+                    <div class="detail-item"><strong>UV Index</strong> <span id="uv-index"></span></div>
+                    <div class="detail-item"><strong>Gió</strong> <span id="wind"></span></div>
+                    <div class="detail-item"><strong>Mặt trời mọc</strong> <span id="sunrise"></span></div>
+                    <div class="detail-item"><strong>Mặt trời lặn</strong> <span id="sunset"></span></div>
+                </div>
+            </div>
+
+            <h3>DỰ BÁO DỮ LIỆU CHU KỲ (7 NGÀY)</h3>
+            <div class="forecast" id="forecast"></div>
+        </div>
+    </div>
+    <script>
+        const select = document.getElementById('province-select');
+        data.forEach(province => {
+            const option = document.createElement('option');
+            option.value = province.value;
+            option.textContent = province.name;
+            select.appendChild(option);
+        });
+
+        select.addEventListener('change', function() {
+            const value = this.value;
+            if (value) {
+                fetchWeather(value);
+            } else {
+                document.getElementById('weather-display').style.display = 'none';
+            }
+        });
+
+        async function fetchWeather(value) {
+            try {
+                // Sử dụng AllOrigins để vượt qua CORS
+                const response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(`https://utils3.cnnd.vn/ajax/weatherinfo/${value}.htm`)}`);
+                const data = await response.json();
+                if (data.Data && data.Data.success) {
+                    displayWeather(data.Data.data.datainfo);
+                } else {
+                     throw new Error('Dữ liệu thời tiết không hợp lệ hoặc không thành công.');
+                }
+            } catch (error) {
+                console.error('Lỗi khi lấy dữ liệu thời tiết:', error);
+                alert('Không thể tải dữ liệu thời tiết. Vui lòng thử lại sau.');
+                document.getElementById('weather-display').style.display = 'none';
+            }
+        }
+
+        function displayWeather(info) {
+            document.getElementById('location').textContent = info.location;
+            document.getElementById('temperature').textContent = `${info.temperature}°C`;
+            document.getElementById('status').textContent = info.status;
+            document.getElementById('high').textContent = info.high;
+            document.getElementById('low').textContent = info.low;
+            document.getElementById('feels-like').textContent = info.feels_like;
+            document.getElementById('humidity').textContent = info.humidity;
+            document.getElementById('visibility').textContent = `${info.visibility.index} ${info.visibility.unit}`;
+            document.getElementById('uv-index').textContent = `${info.UV_index.index} (${info.UV_index.status})`;
+            document.getElementById('wind').textContent = `${info.wind.index} ${info.wind.unit}`;
+            document.getElementById('sunrise').textContent = info.sunrise;
+            document.getElementById('sunset').textContent = info.sunset;
+            document.getElementById('current-icon').src = info.shadow_icon;
+
+            const forecastDiv = document.getElementById('forecast');
+            forecastDiv.innerHTML = '';
+            info.forecast.forEach(day => {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'forecast-day';
+                dayDiv.innerHTML = `
+                    <p class="day-label">${day.date}</p>
+                    <img src="${day.shadow_icon}" alt="Forecast Icon" class="forecast-icon-small">
+                    <p class="temp-range">${day.high}° / ${day.low}°</p>
+                    <p>${day.status}</p>
+                `;
+                forecastDiv.appendChild(dayDiv);
+            });
+
+            document.getElementById('weather-display').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
