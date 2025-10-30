@@ -1,0 +1,137 @@
+/* style.css - pink, full-width top menu, A-B-C-D-E layout */
+:root{
+  --pink-500: #ff69b4;
+  --pink-400: #ff85c1;
+  --pink-200: #ffe6f2;
+  --muted: #666;
+  --card: #fff;
+  --gap: 16px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background: linear-gradient(180deg,#fff 0%, #fffaf8 100%);
+  color:#111;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Part A - top fixed full-width navigation */
+.topbar{
+  position:fixed;
+  top:0;left:0;right:0;
+  background:linear-gradient(90deg,var(--pink-500),var(--pink-400));
+  color:#fff;
+  box-shadow:0 4px 18px rgba(0,0,0,0.08);
+  z-index:1000;
+}
+.topbar-inner{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 20px;
+  gap:12px;
+}
+.brand{
+  font-weight:700;
+  font-size:20px;
+  letter-spacing:0.2px;
+}
+
+/* nav horizontal full width center */
+.nav-list{
+  display:flex;
+  gap:20px;
+  list-style:none;
+  align-items:center;
+}
+.nav-list a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 12px;
+  border-radius:8px;
+  transition:background .18s, transform .12s;
+  display:inline-block;
+}
+.nav-list a:hover{
+  background:rgba(255,255,255,0.12);
+  transform:translateY(-2px);
+}
+
+/* dropdown */
+.has-sub{position:relative}
+.sub{
+  position:absolute;
+  top:calc(100% + 8px);
+  left:0;
+  min-width:160px;
+  background:var(--pink-400);
+  border-radius:8px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+  display:none;
+  list-style:none;
+  padding:6px 0;
+  z-index:1200;
+}
+.sub li a{display:block;padding:8px 14px;color:#fff;font-weight:600}
+.has-sub:hover .sub{display:block}
+
+/* layout container: leave space for fixed header */
+#layout{
+  display:grid;
+  grid-template-columns:220px 1fr 220px;
+  gap:18px;
+  width:100%;
+  max-width:1200px;
+  margin:calc(70px + 20px) auto 20px; /* 70px = header height approx */
+  align-items:start;
+  padding:0 16px;
+  flex:1 0 auto;
+}
+
+/* B and D sidebars */
+#partB, #partD{
+  background:var(--pink-200);
+  border:1px solid rgba(0,0,0,0.04);
+  padding:20px;
+  border-radius:10px;
+  min-height:360px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  color:var(--muted);
+  font-size:28px;
+}
+
+/* Part C center content */
+#partC{
+  background:var(--card);
+  border-radius:10px;
+  padding:26px;
+  min-height:360px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.04);
+}
+
+/* footer (part E) */
+#partE{
+  background:linear-gradient(90deg,var(--pink-400),var(--pink-200));
+  padding:12px 16px;
+  text-align:center;
+  color:#fff;
+  font-weight:600;
+  margin-top:auto;
+}
+
+/* small responsive */
+@media (max-width:1000px){
+  #layout{grid-template-columns:1fr; margin-top:110px; padding:0 12px}
+  .nav-list{gap:10px;flex-wrap:wrap}
+  #partB,#partD{display:none}
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="/css/products.css">
+    <style>
+        .product-detail-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .back-btn {
+            background: linear-gradient(135deg, var(--pink-dark), var(--peach));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="product-detail-container">
+        <h1 id="productName">Chi tiết sản phẩm</h1>
+        <div id="productDetailContent">
+            <!-- Nội dung sẽ được thêm bằng JavaScript -->
+        </div>
+        <button class="back-btn" onclick="goBack()">← Quay lại</button>
+    </div>
+
+    <script>
+        // Lấy dữ liệu từ localStorage
+        const productData = JSON.parse(localStorage.getItem("selected_product"));
+        
+        function displayProductDetail() {
+            if (productData) {
+                document.getElementById("productName").textContent = productData.name;
+                
+                const contentDiv = document.getElementById("productDetailContent");
+                contentDiv.innerHTML = `
+                    <p><strong>ID:</strong> ${productData.id}</p>
+                    <p><strong>Tên sản phẩm:</strong> ${productData.name}</p>
+                    <p><strong>Mô tả:</strong> ${productData.detail}</p>
+                    <img src="${productData.image}" alt="${productData.name}" class="product-image">
+                `;
+            } else {
+                document.getElementById("productDetailContent").innerHTML = 
+                    "<p>Không tìm thấy thông tin sản phẩm</p>";
+            }
+        }
+        
+        function goBack() {
+            window.history.back();
+        }
+        
+        // Hiển thị chi tiết khi trang load
+        displayProductDetail();
+    </script>
+</body>
+</html>

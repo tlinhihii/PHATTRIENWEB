@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Võ Bích Ngọc - Employees</title>
+    <link rel="stylesheet" href="/css/employees.css">
+</head>
+<body>
+    <header>
+        <h1>Employee Management</h1>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <h2>Thêm nhân viên mới</h2>
+            <form id="employeeForm">
+                <div class="form-group">
+                    <label for="id">ID:</label>
+                    <input type="text" id="id" name="id" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Họ tên:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số điện thoại:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Tuổi:</label>
+                    <input type="number" id="age" name="age" min="18" max="100" required>
+                </div>
+                <button type="submit" class="submit-btn">Thêm nhân viên</button>
+            </form>
+        </div>
+
+        <div class="table-container">
+            <h2>Danh sách nhân viên</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Họ tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Tuổi</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeTableBody">
+                    <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let employees = JSON.parse(localStorage.getItem('employees')) || [];
+        document.getElementById('employeeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const employee = {
+                id: formData.get('id'),
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                age: parseInt(formData.get('age'))
+            };
+            employees.push(employee);
+            localStorage.setItem('employees', JSON.stringify(employees));
+            renderEmployeeTable();
+            this.reset();
+        });
+        function renderEmployeeTable() {
+            const tbody = document.getElementById('employeeTableBody');
+            tbody.innerHTML = '';
+            employees.forEach((employee, index) => {
+                const row = document.createElement('tr');
+                if (employee.age >= 18 && employee.age <= 35) {
+                    row.className = 'age-yellow';
+                } else {
+                    row.className = 'age-magenta';
+                }
+                row.innerHTML = `
+                    <td>${employee.id}</td>
+                    <td>${employee.name}</td>
+                    <td>${employee.phone}</td>
+                    <td>${employee.email}</td>
+                    <td>${employee.age}</td>
+                    <td>
+                        <button class="delete-btn" onclick="deleteEmployee(${index})"><img src="/images/remove.png"></button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+        function deleteEmployee(index) {
+            const employee = employees[index];
+            
+            if (confirm(`Bạn có chắc muốn xóa nhân viên "${employee.name}" không?`)) {
+                employees.splice(index, 1);
+                localStorage.setItem('employees', JSON.stringify(employees));
+                renderEmployeeTable();
+            }
+        }
+        document.addEventListener('DOMContentLoaded', renderEmployeeTable);
+    </script>
+</body>
+</html>

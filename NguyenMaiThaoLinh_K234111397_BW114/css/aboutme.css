@@ -1,0 +1,223 @@
+/* === CÀI ĐẶT TOÀN BỘ TRANG === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Giúp việc kiểm soát kích thước dễ dàng hơn */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5; /* Một màu nền xám nhạt */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* === HEADER (TIÊU ĐỀ) === */
+header {
+    background-color: #4A90E2; /* Một màu xanh dương chủ đạo */
+    color: white;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* === BỐ CỤC CHÍNH === */
+.main-container {
+    display: flex; /* Sử dụng Flexbox để xếp cột */
+    flex-wrap: wrap; /* Cho phép rớt dòng trên di động */
+    justify-content: center; /* Căn giữa các cột */
+    align-items: flex-start; /* Căn các cột theo đỉnh */
+    max-width: 1200px;
+    margin: 40px auto; /* Căn giữa và tạo khoảng cách với header */
+    padding: 20px;
+    gap: 30px; /* Khoảng cách giữa cột trái và phải */
+}
+
+/* === CỘT BÊN TRÁI (FLIP CARD) === */
+.profile-left {
+    flex: 1; /* Cột trái chiếm 1 phần */
+    min-width: 300px; /* Chiều rộng tối thiểu */
+    max-width: 350px; /* Chiều rộng tối đa */
+}
+
+/* === HIỆU ỨNG LẬT THẺ === */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 450px; /* Chiều cao của thẻ */
+    perspective: 1000px; /* Tạo chiều sâu 3D */
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s; /* Thời gian lật */
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+
+/* Khi di chuột vào thẻ, lật phần inner */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Mặt trước và mặt sau */
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Ẩn mặt sau khi xoay (cho Safari) */
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden; /* Đảm bảo ảnh nằm gọn trong viền bo */
+}
+
+.flip-card-back {
+    transform: rotateY(180deg); /* Lật sẵn mặt sau */
+}
+
+.flip-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo ảnh lấp đầy thẻ mà không bị méo */
+}
+
+/* === CỘT BÊN PHẢI (THÔNG TIN) === */
+.profile-right {
+    flex: 2; /* Cột phải chiếm 2 phần (rộng hơn) */
+    min-width: 300px; /* Chiều rộng tối thiểu */
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile-right h2 {
+    font-size: 1.8rem;
+    color: #4A90E2; /* Màu xanh đồng bộ với header */
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f2f5;
+}
+
+/* === BẢNG THÔNG TIN === */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Gộp đường viền */
+}
+
+table th,
+table td {
+    padding: 15px 5px;
+    text-align: left;
+    border-bottom: 1px solid #eee; /* Đường kẻ mờ ngăn cách các hàng */
+    vertical-align: top;
+}
+
+table th {
+    font-weight: 600;
+    color: #555;
+    width: 150px; /* Giúp các trường dữ liệu thẳng hàng */
+}
+
+table td {
+    color: #111;
+    word-break: break-all; /* Tự động xuống dòng email/link dài */
+}
+
+/* Bỏ đường viền cho hàng cuối cùng */
+table tr:last-child th,
+table tr:last-child td {
+    border-bottom: none;
+}
+
+/* === RESPONSIVE (CHO ĐIỆN THOẠI) === */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* Xếp 2 cột chồng lên nhau */
+        align-items: center; /* Căn giữa */
+        margin-top: 20px;
+        padding: 10px;
+    }
+
+    .profile-left {
+        width: 90%; /* Chiếm gần hết chiều rộng */
+        max-width: 350px; /* Giới hạn lại */
+        height: 450px; /* Cố định chiều cao cho thẻ */
+    }
+
+    .profile-right {
+        width: 90%;
+        margin-top: 30px; /* Khoảng cách với thẻ ảnh */
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .profile-right h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Biến bảng thành dạng block để dễ đọc trên di động 
+      (Mỗi cặp "Tiêu đề: Dữ liệu" sẽ nằm trên một khối riêng)
+    */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    /* Ẩn header của bảng (nếu có), không cần thiết trong TH này */
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid #ccc;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    
+    /* Hủy bỏ đường viền gốc */
+    table th, table td {
+        border: none;
+        padding: 8px 5px;
+    }
+    
+    table td {
+        border-bottom: 1px solid #eee; /* Tạo đường kẻ giữa các cặp trong một hàng */
+        margin-bottom: 10px;
+    }
+
+    table th {
+        width: auto; /* Bỏ cố định chiều rộng */
+        font-weight: bold;
+        color: #4A90E2; /* Làm nổi bật tiêu đề */
+    }
+
+    /* Sắp xếp lại các cặp th/td */
+    table td:nth-of-type(1) {
+        margin-bottom: 15px; /* Khoảng cách giữa "Võ Bích Ngọc" và "Gender" */
+    }
+     table td:nth-of-type(2) {
+        margin-bottom: 0px;
+    }
+     table td:nth-of-type(3) {
+        margin-bottom: 15px;
+    }
+     table td:nth-of-type(4) {
+        margin-bottom: 0px;
+    }
+    /* ...cứ thế tiếp tục nếu có nhiều cặp hơn */
+}

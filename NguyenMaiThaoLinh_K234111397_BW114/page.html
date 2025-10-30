@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kiwi - BW04 (Part A)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Part A: full-width pink horizontal menu (fixed) -->
+  <header class="topbar" id="partA">
+    <div class="topbar-inner">
+      <div class="brand">Kiwi</div>
+
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="#" data-page="about">About me</a></li>
+
+          <li class="has-sub">
+            <a href="#">Form &amp; Javascript ▾</a>
+            <ul class="sub">
+              <li><a href="#" data-page="products">Products</a></li>
+              <li><a href="#" data-page="employees">Employees</a></li>
+            </ul>
+          </li>
+
+          <li class="has-sub">
+            <a href="#">API and External ▾</a>
+            <ul class="sub">
+              <li><a href="#" data-page="weather">Weather API</a></li>
+              <li><a href="#" data-page="rss">RSS</a></li>
+            </ul>
+          </li>
+
+          <li><a href="#" data-page="login">Login/Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main layout A-B-C-D-E -->
+  <main id="layout">
+    <!-- Part B (left column) -->
+    <aside id="partB" aria-label="Column B">B</aside>
+
+    <!-- Part C (center content, dynamic) -->
+    <section id="partC" aria-live="polite"></section>
+
+    <!-- Part D (right column) -->
+    <aside id="partD" aria-label="Column D">D</aside>
+  </main>
+
+  <!-- Part E (footer) -->
+  <footer id="partE">
+    <div id="designed">Designed by Student ---, today is --:--:--</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

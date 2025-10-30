@@ -1,0 +1,100 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* HEADER */
+header {
+  background-color: #0066cc;
+  padding: 15px 0;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px 12px;
+  transition: background 0.3s;
+}
+
+nav a:hover {
+  background-color: #004d99;
+  border-radius: 5px;
+}
+
+/* DROPDOWN MENU */
+nav ul li ul {
+  position: absolute;
+  background-color: #0066cc;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  top: 35px;
+  left: 0;
+  display: none;
+  border-radius: 5px;
+  min-width: 150px;
+}
+
+nav ul li:hover ul {
+  display: block;
+}
+
+nav ul li ul li a {
+  display: block;
+  padding: 10px;
+}
+
+/* MAIN LAYOUT */
+.main-container {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  min-height: calc(100vh - 150px);
+  background-color: #f0f7ff;
+}
+
+/* SIDEBAR LEFT + RIGHT */
+.sidebar-left,
+.sidebar-right {
+  background-color: #cce0ff;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: #004080;
+}
+
+/* CONTENT AREA */
+#content {
+  background-color: white;
+  margin: 15px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow-y: auto;
+}
+
+/* FOOTER */
+footer {
+  background-color: #0066cc;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-weight: 500;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+}

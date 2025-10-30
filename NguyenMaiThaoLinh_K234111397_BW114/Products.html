@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGUYỄN MAI THẢO LINH - PRODUCT </title>
+    <link rel="stylesheet" href="/css/products.css">
+
+</head>
+<body>
+    <table border="1">
+        <caption>List of Products </caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Details</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="product_tbody">
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        // Tạo XMLHttpRequest để đọc file XML
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/xml/Products.xml", true);
+        xhr.send();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var xmlDoc = xhr.responseXML;
+                var products = xmlDoc.getElementsByTagName("product");
+                var tbody = document.getElementById("product_tbody");
+                
+                // Tạo hàng cho mỗi sản phẩm
+                for (let i = 0; i < products.length; i++) {
+                    const product = products[i];
+                    
+                    // Lấy thông tin sản phẩm
+                    const id = product.getElementsByTagName("id")[0].childNodes[0].nodeValue;
+                    const name = product.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+                    const detail = product.getElementsByTagName("detail")[0].childNodes[0].nodeValue;
+                    const image = product.getElementsByTagName("image")[0].childNodes[0].nodeValue;
+                    
+                    // Tạo các ô dữ liệu
+                    const tdId = document.createElement("td");
+                    tdId.innerText = id;
+                    
+                    const tdName = document.createElement("td");
+                    tdName.innerText = name;
+                    
+                    const tdDetail = document.createElement("td");
+                    tdDetail.className = "product-detail";
+                    tdDetail.innerText = detail;
+                    
+                    const tdImage = document.createElement("td");
+                    const imgElement = document.createElement("img");
+                    imgElement.src = image;
+                    imgElement.alt = name;
+                    imgElement.className = "product-image";
+                    tdImage.appendChild(imgElement);
+                    
+                    const tdActions = document.createElement("td");
+                    
+                    // Nút xem chi tiết
+                    const detailBtn = document.createElement("img");
+                    detailBtn.src = "/images/detail.png"; // Đường dẫn đến icon chi tiết
+                    detailBtn.alt = "Xem chi tiết";
+                    detailBtn.className = "action-icon";
+                    detailBtn.title = "Xem chi tiết";
+                    detailBtn.style.cursor = "pointer";
+                    detailBtn.style.width = "24px";
+                    detailBtn.style.height = "24px";
+                    
+                    // Nút xóa
+                    const deleteBtn = document.createElement("img");
+                    deleteBtn.src = "/images/remove.png"; // Đường dẫn đến icon xóa
+                    deleteBtn.alt = "Xóa";
+                    deleteBtn.className = "action-icon";
+                    deleteBtn.title = "Xóa";
+                    deleteBtn.style.cursor = "pointer";
+                    deleteBtn.style.width = "24px";
+                    deleteBtn.style.height = "24px";
+                    
+                    tdActions.appendChild(detailBtn);
+                    tdActions.appendChild(deleteBtn);
+                    
+                    // Tạo hàng và thêm các ô vào
+                    const tr = document.createElement("tr");
+                    tr.appendChild(tdId);
+                    tr.appendChild(tdName);
+                    tr.appendChild(tdDetail);
+                    tr.appendChild(tdImage);
+                    tr.appendChild(tdActions);
+                    
+                    // Thêm hàng vào bảng
+                    tbody.appendChild(tr);
+                    
+                    // Xử lý sự kiện cho nút xem chi tiết
+                    detailBtn.onclick = function() {
+                        const productData = {
+                            "id": id,
+                            "name": name,
+                            "detail": detail,
+                            "image": image
+                        };
+                        const stringJson = JSON.stringify(productData);
+                        localStorage.setItem("selected_product", stringJson);
+                        window.open("details.html", "_self");
+                    };
+                    
+                    // Xử lý sự kiện cho nút xóa
+                    deleteBtn.onclick = function() {
+                        if (confirm("Bạn có chắc muốn xóa sản phẩm '" + name + "' không?")) {
+                            tbody.removeChild(tr);
+                        }
+                    };
+                }
+            }
+        };
+    </script>
+</body>
+</html>

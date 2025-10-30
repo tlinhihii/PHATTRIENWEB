@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng nhập trước khi ghé tiệm nhé!</title>
+<link rel="stylesheet" href="/css/login.css">
+<script src="/js/login.js"></script>
+
+</head>
+<body>
+<form name="myform" class="login-card">
+    <img src="/images/cookie.png" alt="Avatar">
+    <h2> Login to visit our website! </h2>
+    <input type="text" id="user_name" name="user_name" placeholder="Username">
+    <input type="password" id="user_password" name="user_password" placeholder="Password">
+    <div style="text-align:left; margin-left:20px;">
+        <input type="checkbox" name="save_info" id="save_info">
+        <label for="save_info">Save Login Information</label>
+    </div>
+    <button type="button" onclick="process_login()">Login</button>
+    <p id="error-box">❌ Sai tên đăng nhập hoặc mật khẩu!</p>
+    <a href="#">Forgot password?</a>
+</form>
+</body>
+</html>
